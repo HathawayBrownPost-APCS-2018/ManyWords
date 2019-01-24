@@ -1,0 +1,52 @@
+// Be sure to save so that Filename matches Class name
+
+public class WordsTester
+{
+
+  // ------------------------------------------------------------
+  //   main method to explore the different collections.
+  // ------------------------------------------------------------
+  public static void main (String[] args) 
+  {
+    long startTime = System.nanoTime();
+    WordList1 myWords = new WordList1();
+    long endTime = System.nanoTime();
+    System.out.println(myWords.report());
+    double elapsedSec = (endTime - startTime) / 1000000000.0;
+    System.out.println (elapsedSec + " seconds to build database.");
+    
+    
+    int numWords = 50000;
+    System.out.println("\n" + numWords + " random words:");
+    
+    int wordCount = 0;
+    startTime = System.nanoTime();
+    for (int i = 1; i <= numWords; i++)
+    {
+      RandomWord nextWord = new RandomWord();
+      boolean isWord = myWords.isInCollection(nextWord.toString());
+      if (isWord)
+      {
+        wordCount++;
+      }
+ /*     if (isWord)
+      {
+        System.out.print(nextWord);
+      }
+      else
+      {
+        System.out.print(".");
+      }
+      if (i % 100 == 0)
+      {
+        System.out.println();
+      }   */
+    }
+    
+    endTime = System.nanoTime();
+    elapsedSec = (endTime - startTime) / 1000000000.0;
+    System.out.println ("Found " + wordCount + " genuine words.");
+    System.out.println (elapsedSec + " seconds to analyze.");
+        
+  }
+}
